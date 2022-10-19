@@ -4,24 +4,11 @@ import axios from "axios";
 import EditTutorial from "./EditTutorial";
 
 const TutorialList = ({ tutor, getTutorials }) => {
-  //! DELETE (CRUD-Delete)
   const deleteTutorial = async (id) => {
-    const url = "https://tutorials-api-cw.herokuapp.com/api/tutorials";
+    const url = "https://axios-example-cw.herokuapp.com/api/tutorials";
+
     try {
       await axios.delete(`${url}/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
-    getTutorials();
-  };
-
-  //! PUT (CRUD-Update)
-  //! PUT: Whole Update, PATCH: Partially Update
-  const editTutorial = async ({ id, title, description }) => {
-    // const { id, title, description } = item;
-    const url = "https://tutorials-api-cw.herokuapp.com/api/tutorials";
-    try {
-      await axios.put(`${url}/${id}`, { title, description });
     } catch (error) {
       console.log(error);
     }
