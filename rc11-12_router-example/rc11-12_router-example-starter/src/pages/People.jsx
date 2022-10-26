@@ -33,7 +33,14 @@ const People = () => {
               //navigate içinde state key ile tıklanılan person nın bütün bilgilerini yönlendirilen page e gönderiyoruz.
               // onClick={() => navigate(`/people/${id}`, {state:person})} 
               // {/*Tıklanıldığında git demek için verdik.*/}
-              onClick={() => navigate(`/people/${id}`)} 
+              // onClick={() => <Link to={`/people/${id}`}>Click </Link>} //! Linkler ve gibileri event olarak yazılamaz.
+              
+              //!absolute path
+              // onClick={() => navigate(`/people/${id}`)}
+              
+              //! relative path
+              onClick={() => navigate(`${id}`)} 
+              // Relative path de bulunduğun yerin adresine gideceğin yerin adresini ekle ve git diyoruz.
             >
               <img className="rounded" src={avatar} alt="img" />
               <h6>
