@@ -15,6 +15,7 @@ body {
   font-size:1.1rem;
 }
 
+
 p {
   opacity:0.6;
   line-height:1.5rem;
