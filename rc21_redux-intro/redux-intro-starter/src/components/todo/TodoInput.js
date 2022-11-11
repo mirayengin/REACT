@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../redux/actions/todoAction";
 
 const TodoInput = () => {
+  //! Burada local state e tutulan text datalrını dispatch ettik metodla bunuda addtodo fonk yaptık dispatch in içine koyarak
+  const dispatch = useDispatch()
   const [text, setText] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    dispatch(addTodo(text))
     setText("");
   };
 
