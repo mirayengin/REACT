@@ -12,7 +12,7 @@ const TextFieldComp = () => {
   return (
     <div>
       <Container>
-        <Typography variant='h4' color=" error" align='center' mt={4}>
+        <Typography variant='h4' color="secondary.dark" align='center' mt={4}>
           TEXT FIELD
         </Typography>
         <Box sx={{ mt: 4 , textAlign:"center"}}>
@@ -22,7 +22,7 @@ const TextFieldComp = () => {
           {/* margin probuyla inputlar arasındaki aralığı default değer olan değerlerle belirleyebiliyoruz (normal,dense,none) gibi */}
           <TextField margin="normal" id="password" label="Password" placeholder='Enter your password' fullWidth error={error} helperText={error && "Incorrect email format"} />
 
-          <Button variant="contained" color="warning" sx={{mt:3}} >
+          <Button variant="contained" color="warning" sx={{mt:3, backgroundColor:"secondary.dark"}} >
           Submit
           </Button>
 
