@@ -1,14 +1,15 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCqd5VoOqeRghE4pTIP1_hd2mnVk4sOx_U",
-  authDomain: "firecontact-d32d8.firebaseapp.com",
-  databaseURL:
-    "https://firecontact-d32d8-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "firecontact-d32d8",
-  storageBucket: "firecontact-d32d8.appspot.com",
-  messagingSenderId: "1080601116352",
-  appId: "1:1080601116352:web:38eb3df0f3628cd5a7f725",
+  apiKey: "AIzaSyApJXH5o1PXazmK6AU_qFsAo3gmdRdzZCI",
+  authDomain: "fire-contact-project-12.firebaseapp.com",
+  databaseURL: "https://fire-contact-project-12-default-rtdb.firebaseio.com",
+  projectId: "fire-contact-project-12",
+  storageBucket: "fire-contact-project-12.appspot.com",
+  messagingSenderId: "454240655526",
+  appId: "1:454240655526:web:32b3ad91caf88c5fa6fc67"
 };
 
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase
+const firebase = initializeApp(firebaseConfig);
+export default firebase;
