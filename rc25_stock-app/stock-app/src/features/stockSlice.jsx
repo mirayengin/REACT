@@ -4,11 +4,11 @@ const stockSlice = createSlice({
   name: "stock",
 
   initialState: {
-    puchases: null,
+    purchases: null,
     sales: null,
+    products: null,
     brands: null,
     firms: null,
-    produtcs: null,
     categories: null,
     loading: false,
     error: false,
@@ -22,7 +22,6 @@ const stockSlice = createSlice({
       state.loading = false;
       state[url] = data;
     },
-
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;

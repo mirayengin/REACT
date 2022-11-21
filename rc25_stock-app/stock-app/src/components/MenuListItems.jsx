@@ -46,19 +46,16 @@ const icons = [
   {
     title: "Admin Panel",
     icon: <SupervisorAccountIcon />,
-    url: "https://13730.fullstack.clarusway.com//admin",
+    url: "https://13730.fullstack.clarusway.com/admin",
   },
 ];
 
 const iconStyle = {
-  color: "white",
-  // fontSize:"1.5rem"
-  "& .MuiSvgIcon-root": { color: "white" },
-  "&:hover":{color:"red"},
-  "&:hover .MuiSvgIcon-root":{color:"red"},
-}
-
-
+  color: "#eee",
+  "& .MuiSvgIcon-root": { color: "#eee" },
+  "&:hover": { color: "red" },
+  "&:hover .MuiSvgIcon-root": { color: "red" },
+};
 
 const MenuListItems = () => {
   const navigate = useNavigate();
@@ -67,15 +64,15 @@ const MenuListItems = () => {
       <List>
         {icons?.map((item, index) => (
           <ListItem key={index} disablePadding>
-            {!item.url.includes("http") && (
-              <ListItemButton sx={iconStyle} onClick={() => navigate(item.url)}>
+            {item.url.includes("http") && (
+              <ListItemButton to={item.url} sx={iconStyle}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.title} />
               </ListItemButton>
             )}
 
-            {item.url.includes("http") && (
-              <ListItemButton sx={iconStyle} to="https://13730.fullstack.clarusway.com//admin">
+            {!item.url.includes("http") && (
+              <ListItemButton onClick={() => navigate(item.url)} sx={iconStyle}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.title} />
               </ListItemButton>
