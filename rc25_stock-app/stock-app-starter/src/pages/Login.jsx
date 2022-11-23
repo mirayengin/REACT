@@ -60,6 +60,8 @@ const Login = () => {
               actions.resetForm();
               actions.setSubmitting(false);
             }}
+
+            // Bu props formikteki propları içerir ve ve kodları kısaldır.
             component={(props) => <LoginForm {...props} />}
           ></Formik>
           <Box sx={{ textAlign: "center", mt: 2 }}>
