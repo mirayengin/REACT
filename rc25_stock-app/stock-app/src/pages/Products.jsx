@@ -7,11 +7,11 @@ import Grid from "@mui/material/Grid";
 import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
 import FirmModal from "../components/modals/FirmModal";
-import { getSnackbarUnstyledUtilityClass } from "@mui/base";
+
 
 const Firms = () => {
   const { getBrands, getCategories, getProducts } = useStockCalls();
-  const { firms } = useSelector((state) => state.stock);
+  const { products } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});
 
