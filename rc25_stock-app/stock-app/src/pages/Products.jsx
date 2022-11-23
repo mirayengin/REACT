@@ -1,5 +1,77 @@
-const Products = () => {
-  return <div>Products</div>;
+import { useEffect, useState } from "react";
+import useStockCalls from "../hooks/useStockCalls";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import { useSelector } from "react-redux";
+import FirmCard from "../components/FirmCard";
+import FirmModal from "../components/modals/FirmModal";
+
+// import axios from "axios";
+
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchFail, fetchStart, getSuccess } from "../features/stockSlice";
+
+const Firms = () => {
+  const { getBrands,getCategories,getProducts } = useStockCalls();
+  const { firms } = useSelector((state) => state.stock);
+  const [open, setOpen] = useState(false);
+  const [info, setInfo] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    image: "",
+  });
+  // const dispatch = useDispatch();
+
+  // const { token } = useSelector((state) => state.auth);
+  // const BASE_URL = "https://10001.fullstack.clarusway.com/";
+
+  // const getFirms = async () => {
+  //   const url = "firms";
+  //   dispatch(fetchStart());
+  //   try {
+  //     const { data } = await axios.get(`${BASE_URL}stock/firms/`, {
+  //       headers: { Authorization: `Token ${token}` },
+  //     });
+  //     console.log(data);
+  //     dispatch(getSuccess({ data, url }));
+  //   } catch (error) {
+  //     dispatch(fetchFail());
+  //     console.log(error);
+  //   }
+  // };
+
+  useEffect(() => {
+    getBrands();
+    getCategories();
+    getProducts();
+  }, []);
+
+  return (
+    <Box>
+      <Typography variant="h4" color="error" mb={4}>
+        Products
+      </Typography>
+
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        New Product
+      </Button>
+
+      <FirmModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} />
+
+      {firms?.length > 0 && (
+        <Grid container justifyContent="center" gap={3}>
+          {firms?.map((firm) => (
+            <Grid item key={firm.id}>
+              <FirmCard  firm={firm} setOpen={setOpen} setInfo={setInfo} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Box>
+  );
 };
 
-export default Products;
+export default Firms;

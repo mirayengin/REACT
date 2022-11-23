@@ -22,6 +22,9 @@ const useStockCalls = () => {
 
   const getFirms = () => getStockData("firms");
   const getSales = () => getStockData("sales");
+  const getCategories = () => getStockData("categories");
+  const getBrands = () => getStockData("brands");
+  const getProducts = () => getStockData("products");
 
   //!------------- DELETE CALLS ----------------
   const deleteStockData = async (url, id) => {
@@ -37,7 +40,50 @@ const useStockCalls = () => {
 
   const deleteFirm = (id) => deleteStockData("firms", id);
 
-  return { getFirms, getSales, deleteFirm };
+  //!------------- POST CALLS ----------------
+
+  const postStockData = async (info, url) => {
+    try {
+      await axiosWithToken.post(`stock/${url}/`, info);
+      toastSuccessNotify(`${url} successfuly add`);
+      getStockData(url);
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify(`${url} can not be add`);
+    }
+  };
+
+  const postFirm = (info) => postStockData(info, "firms/");
+
+
+  //!------------- PUT CALLS ----------------
+
+  const putStockData = async (info, url) => {
+    try {
+      await axiosWithToken.put(`stock/${url}/${info.id}/`, info);
+      toastSuccessNotify(`${url} successfuly update`);
+      getStockData(url);
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify(`${url} can not be update`);
+    }
+  };
+
+  const putFirm = (info) => putStockData(info, "firms/");
+
+  return {
+    getStockData,
+    getCategories,
+    getFirms,
+    getBrands,
+    getSales,
+    deleteFirm,
+    getProducts,
+    postFirm,
+    postStockData,
+    putFirm,
+    putStockData
+  };
 };
 
 export default useStockCalls;
