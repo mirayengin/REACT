@@ -12,7 +12,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { useNavigate } from "react-router-dom";
 
-
 //! Bu icons datalarını menümüzde göstermek için oluşturduk. bu şekilde daha değiştirmesi kolay oldu.
 const icons = [
   {
@@ -52,33 +51,36 @@ const icons = [
   },
 ];
 
+const iconStyle = {
+  color: "#eee",
+  "& .MuiSvgIcon-root": { color: "#eee" },
+  "&:hover":  {color:"red"},
+  "&:hover .MuiSvgIcon-root":  {color:"red"}
+}
+
 const MenuListItems = () => {
   const navigate = useNavigate();
-  
-  
-  
-  
-  
+
   return (
     //? Bu componenti yaptık çünkü yeni bir menü ekleme veya cıkarma kolay olması için
     <div>
       <List>
         {icons?.map((item, index) => (
           <ListItem key={index} disablePadding>
-            {/* //Burada adresler dahili olduğu için navigate ile gönderebiliyoruz. */}
-            <ListItemButton onClick={() => navigate(item.url)}>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.title} />
-            </ListItemButton>
-            {/* //!Burada harici bir link olursa navigate ile yönlendirme yapamayız bu yüden bir koşul yapmalıyız.Yada asağıdaki butonun bir to property si var onu kullanırız.Koşulu ise inculudes ile yapabiliriz. */}
-            {/* <ListItemButton to={item.url}>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.title} />
-            </ListItemButton> */}
+            {/* //!Burada harici bir link olursa navigate ile yönlendirme yapamayız bu yüden bir koşul yapmalıyız.Yada asağıdaki butonun bir to property si var onu kullanırız.Koşulu ise inculudes ile yapabiliriz. Harici adres yölendirmesinde Lİnk ve NavLink kullanabiliriz */}
+            {item.url.includes("http") && (
+              <ListItemButton to={item.url} sx={iconStyle}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.title} />
+              </ListItemButton>
+            )}
+                {/* //?Burada adresler dahili olduğu için navigate ile gönderebiliyoruz. */}
+            {!item.url.includes("http") && (
+              <ListItemButton onClick={() => navigate(item.url)} sx={iconStyle}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.title} />
+              </ListItemButton>
+            )}
 
           </ListItem>
         ))}
