@@ -49,22 +49,6 @@ const getFirms = () => getStockData("firms")
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // const getFirms = async () => {
   //   //! Dispatchhlerin actions larını biz yazıyoruz ve oradan import ediyoruz. Bu veriyi statelere gönderim başladığında
   //   dispatch(fetchStart());
@@ -81,7 +65,7 @@ const getFirms = () => getStockData("firms")
   //     console.log(error);
   //   }
   // };
-  return { getFirms , getSales, deleteFirm};
+  return {getStockData, getFirms , getSales, deleteFirm};
 };
 
 //! custom hooklar bir jsx döndürmez sadece yazdığınnız fonk return eder

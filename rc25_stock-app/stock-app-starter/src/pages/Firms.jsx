@@ -1,7 +1,8 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
+import FirmModal from "../components/modals/FirmModal";
 import useStockCalls from "../hooks/useStockCalls";
 // import axios from "axios";
 // import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +10,12 @@ import useStockCalls from "../hooks/useStockCalls";
 // import { fetchStart, fetchFail, getSuccess } from "../features/stockSlice";
 
 const Firms = () => {
+  //! Modal acılması ve kapanması için kullanılacak
+  const [open, setOpen] = useState(false);
+
+  //! Burdan modal a edit yapılacak cardın bilgileri gönderilecek
+  const [info, setInfo] = useState({name:"", phone:"", address:"", image:""})
+
   //! useStockCalls da bu GETFİRMS FONK YAZDIK VE BURAYA İMPORT ETTİK CUSTOM HOOKTAM
   const { getFirms } = useStockCalls();
 
@@ -48,15 +55,21 @@ const Firms = () => {
       <Typography variant="h4" color="error" mb={4}>
         Firms
       </Typography>
-
-      <Button variant="contained"> New Firm</Button>
+{/* //! modal ı açıyor bu buton */}
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        
+        New Firm
+      </Button>
+      <FirmModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} />
 
       {firms?.length > 0 && (
         <Grid container justifyContent="center" gap={3}>
           {firms?.map((firm) => {
-            <Grid item >
-              <FirmCard key={firm.id}  firm={firm} />
-            </Grid>;
+            return (
+              <Grid item>
+                <FirmCard key={firm.id} firm={firm} />
+              </Grid>
+            );
           })}
         </Grid>
       )}
