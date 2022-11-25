@@ -21,10 +21,9 @@ export const flexCenter = {
   gap: 2,
 };
 
-
 export const flex = {
   display: "flex",
-  justifyContent: "start",
+  justifyContent: "center",
   alignItems: "center",
   gap: 2,
 };

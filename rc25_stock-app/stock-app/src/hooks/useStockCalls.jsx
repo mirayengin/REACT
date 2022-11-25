@@ -104,6 +104,7 @@ const useStockCalls = () => {
     getProducts,
     getProCatBrands,
     getBrands,
+    getPurchases,
     deleteFirm,
     deleteBrand,
     deleteProduct,
@@ -114,7 +115,6 @@ const useStockCalls = () => {
     putFirm,
     putStockData,
     putBrand,
-    getPurchases
   };
 };
 
