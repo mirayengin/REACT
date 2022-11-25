@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
 import FirmModal from "../components/modals/FirmModal";
 import useStockCalls from "../hooks/useStockCalls";
+import { flexCenter } from "../styles/globalStyle";
 // import axios from "axios";
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchStart,fetchFail, getSuccess } from "../features/authSlice";
@@ -63,11 +64,11 @@ const Firms = () => {
       <FirmModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} />
 
       {firms?.length > 0 && (
-        <Grid container justifyContent="center" gap={3}>
+        <Grid container justifyContent="center" gap={3} sx={flexCenter}>
           {firms?.map((firm) => {
             return (
               <Grid item>
-                <FirmCard key={firm.id} firm={firm} />
+                <FirmCard key={firm.id} firm={firm} setOpen={setOpen} setInfo={setInfo} />
               </Grid>
             );
           })}

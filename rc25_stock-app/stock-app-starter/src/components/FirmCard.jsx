@@ -10,7 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { btnHoverStyle } from '../styles/globalStyle';
 import useStockCalls from '../hooks/useStockCalls';
 
-export default function FirmCard({ firm }) {
+export default function FirmCard({ firm,setOpen,setInfo }) {
   const { deleteFirm } = useStockCalls();
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -31,9 +31,10 @@ export default function FirmCard({ firm }) {
       <CardActions sx={{display:"flex", justifyContent:"center"}}>
       <EditIcon
           sx={btnHoverStyle}
+          // ! firm ve ınfo bilgilerini doldur edit işlmi için
           onClick={() => {
-            // setOpen(true);
-            // setInfo(firm);
+            setOpen(true);
+            setInfo(firm);
           }}
         />
         <DeleteOutlineIcon
