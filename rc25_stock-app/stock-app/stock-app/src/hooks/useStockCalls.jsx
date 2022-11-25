@@ -1,6 +1,11 @@
 // import { axiosWithToken } from "../service/axiosInstance";
 import { useDispatch } from "react-redux";
-import { fetchFail, fetchStart, getSuccess } from "../features/stockSlice";
+import {
+  fetchFail,
+  fetchStart,
+  getSuccess,
+  getProCatBrandsSuccess,
+} from "../features/stockSlice";
 import useAxios from "./useAxios";
 import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
@@ -25,6 +30,25 @@ const useStockCalls = () => {
   const getCategories = () => getStockData("categories");
   const getBrands = () => getStockData("brands");
   const getProducts = () => getStockData("products");
+  const getPurchases = () => getStockData("purchases");
+
+  const getProCatBrands = async () => {
+    dispatch(fetchStart());
+    try {
+      const [products, categories, brands] = await Promise.all([
+        axiosWithToken.get("stock/products/"),
+        axiosWithToken.get("stock/categories/"),
+        axiosWithToken.get("stock/brands/"),
+      ]);
+
+      dispatch(
+        getProCatBrandsSuccess([products?.data, categories?.data, brands?.data])
+      );
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+    }
+  };
 
   //!------------- DELETE CALLS ----------------
   const deleteStockData = async (url, id) => {
@@ -40,6 +64,7 @@ const useStockCalls = () => {
 
   const deleteFirm = (id) => deleteStockData("firms", id);
   const deleteBrand = (id) => deleteStockData("brands", id);
+  const deleteProduct = (id) => deleteStockData("products", id);
   //!------------- POST CALLS ----------------
   const postStockData = async (info, url) => {
     try {
@@ -54,6 +79,7 @@ const useStockCalls = () => {
 
   const postFirm = (info) => postStockData(info, "firms");
   const postBrand = (info) => postStockData(info, "brands");
+  const postProduct = (info) => postStockData(info, "products");
 
   //!------------- PUT CALLS ----------------
   const putStockData = async (info, url) => {
@@ -76,12 +102,16 @@ const useStockCalls = () => {
     getSales,
     getCategories,
     getProducts,
+    getProCatBrands,
     getBrands,
+    getPurchases,
     deleteFirm,
     deleteBrand,
+    deleteProduct,
     postFirm,
     postStockData,
     postBrand,
+    postProduct,
     putFirm,
     putStockData,
     putBrand,
