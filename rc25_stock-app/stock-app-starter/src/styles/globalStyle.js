@@ -19,7 +19,7 @@ export const modalStyle = {
 export const flexCenter = {
   display: "flex",
   justifyContent: "center",
-  flexDirection: "column",
+  flexDirection: {xs:"column", sm:"row"},
   alingItems: "center",
   gap:2,
 }
