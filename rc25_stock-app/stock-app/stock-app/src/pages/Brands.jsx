@@ -25,7 +25,7 @@ const Brands = () => {
       <Button
         variant="contained"
         onClick={() => {
-          setInfo();
+          setInfo({});
           setOpen(true);
         }}
       >

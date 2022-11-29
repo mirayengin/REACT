@@ -25,7 +25,7 @@ export const flex = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: 2,
+  gap: 1,
 };
 
 export const flexColumn = {
@@ -37,6 +37,7 @@ export const flexColumn = {
 export const arrowStyle = {
   display: "flex",
   justifyContent: "center",
+  alignItems: "center",
   cursor: "pointer",
   "&:hover": { color: "red" },
 };

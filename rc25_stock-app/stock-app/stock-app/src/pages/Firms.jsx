@@ -39,9 +39,10 @@ const Firms = () => {
   //   }
   // };
 
+  // Firms state'inin muhtemel degisiklikler groe
   useEffect(() => {
     getFirms();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box>
@@ -49,7 +50,13 @@ const Firms = () => {
         Firms
       </Typography>
 
-      <Button variant="contained" onClick={() => setOpen(true)}>
+      <Button
+        variant="contained"
+        onClick={() => {
+          setInfo({});
+          setOpen(true);
+        }}
+      >
         New Firm
       </Button>
 
