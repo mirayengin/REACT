@@ -1,6 +1,6 @@
 // import { axiosWithToken } from "../service/axiosInstance";
 import { useDispatch } from "react-redux";
-import { fetchFail, fetchStart, getSuccess } from "../features/stockSlice";
+import { fetchFail, fetchStart, getSuccess,getProCatBrandsSuccess } from "../features/stockSlice";
 import useAxios from "./useAxios";
 import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
@@ -20,7 +20,7 @@ const useStockCalls = () => {
       const { data } = await axiosWithToken.get(`stock/${url}/`);
       console.log(data);
       //? başarılı olduğunda
-      dispatch(getSuccess(data, url));
+      dispatch(getProCatBrandsSuccess(data, url));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -31,7 +31,26 @@ const useStockCalls = () => {
   const getSales = () => getStockData("sales");
   const getCategories = () => getStockData("categories");
   const getBrands= () => getStockData("brands");
-  const getProducts= () => getStockData("products");
+  const getProducts = () => getStockData("products");
+  
+
+  //? Burda bu statelerden veriler aynı anda çekme işlemi yapmak için bunu yaptık.
+  const getProCatBrands = async () => {
+
+    //! Veri alma işlemi başladığına dair
+    dispatch(fetchStart());
+    try {
+      const [products,categories,brands] = await Promise.all(
+      [axiosWithToken.get("stock/products/")],
+      [axiosWithToken.get("stock/categories/")],
+        [axiosWithToken.get("stock/brands/")])
+      
+      //? Dönen veri bir array olduğu için yeni bir success dispatch ı yazıyoruz.
+        dispatch(getProCatBrandsSuccess([products.data, categories.data, brands.data]));
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   //! --------- DELETE CALLS --------------
 
@@ -46,6 +65,7 @@ const useStockCalls = () => {
   };
 
   const deleteFirm = (id) => deleteStockData("firms", id);
+  const deleteProduct = (id) => deleteStockData("products", id);
 
   //! --------- POST CALLS --------------
 //? bu fonk modal da yazdığımız firm bilgilerini apiye gönderiyor.
@@ -104,6 +124,11 @@ const useStockCalls = () => {
     getCategories,
     getBrands,
     getProducts,
+    getProCatBrands,
+    // getProCatBrandsSuccess,
+    deleteProduct
+
+    
   };
 };
 

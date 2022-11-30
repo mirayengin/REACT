@@ -16,9 +16,13 @@ import Paper from "@mui/material/Paper";
 import useSortColumn from "../hooks/useSortColumn";
 import { MultiSelectBox, MultiSelectBoxItem } from "@tremor/react";
 import ProductModal from "../../../stock-app/src/components/modals/ProductModal";
+import { getProCatBrands } from "../hooks/useStockCalls";
+// import { getProCatBrands} from "../features/stockSlice";
 
 const Firms = () => {
-  const { getCategories, getBrands, getProducts } = useStockCalls();
+  //! Promise all dan sonra bunlara ihtiyaç kalmadı
+  // const { getCategories, getBrands, getProducts } = useStockCalls();
+  const {deleteProduct } = useStockCalls();
   const { products,brands } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
 
@@ -34,9 +38,10 @@ const Firms = () => {
 
   //? Burda products sayfası ilk açıldığında bu bilgiler yüklen,yor.
   useEffect(() => {
-    getBrands();
-    getCategories();
-    getProducts();
+    // getBrands();
+    // getCategories();
+    // getProducts();
+    getProCatBrands()
   }, []);
 
   //! sıralama fonk diğer yerlerde kullanmak ve clean code için custom hook a taşıdık o yüzden bu verileri custom hook a göndermek gerekliydi bizde bu dataları normal bir obj olarak gönderdik ve hook un içinde state oluşturduk
