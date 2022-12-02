@@ -58,7 +58,7 @@ const TutorialList = ({ tutor, getTutorials }) => {
                     size={20}
                     type="button"
                     data-bs-toggle="modal"
-                    data-bs-target="#edit-modal"  {/* modal daki açılışı yapmak için burada bunu ve alttakini ekledik buraya çünkü modal ile aynı olmalı bu değerler*/}
+                    data-bs-target="#edit-modal"  /* modal daki açılışı yapmak için burada bunu ve alttakini ekledik buraya çünkü modal ile aynı olmalı bu değerler*/
                     className="me-2 text-warning"
                     onClick={() =>
                       editTutorial({

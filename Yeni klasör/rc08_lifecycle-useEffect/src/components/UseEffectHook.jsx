@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 //! useEffect(() => {
 //*   */ ComponentDidMount + componentDidUpdate code */
 //! }, [var1, var2]);
+//? useEffect içinde sadece componentDidUpdate kodlarını çalıştıramıyoruz
 
 //! useEffect(() => {
 //!   return () => {
@@ -37,6 +38,7 @@ const UseEffectHook = () => {
   //! fetch, asyn-await ,localStorage, setTimeout, setInterval();
   // useEffect(() => {
   //   console.log("Mounting");
+  //? setTımeout func ile verieln süre kadar bekletip süre sonunda çalıştırıyoruz bu func içindekileri
   //   setTimeout(() => {
   //     alert("Data Fetched");
   //   }, 3000);
@@ -55,19 +57,34 @@ const UseEffectHook = () => {
     console.log("Data Fetched");
   };
 
+
+
+
+  //! Normal değişkenler useEffect içinde çalışmaz illaki state olmalıdır.
+  //? depency Array i silersek bu useEffect ComponentDidMount +  componentDidUpdate gibi çalısır.
   useEffect(() => {
-    //! ComponentDidMount
+    //! ComponentDidMount +  componentDidUpdate
+
+    //?setInterval ile timer kurulur ve belirtilen her süresinde parantezinin içindekini çalıştırır.
     const timerId = setInterval(fetchData, 1000);
     console.log("Mounting");
 
     return () => {
-      //! componentWillUnmount
+      //! Clean-Up function (componentWillUnmount)
+
+      //? timerId adında bir timer kuruldu ve bu bu arka  planda sürekli belirttiğiniz sürede çalışıyor.Bunu durdurmak için clearInterval() func kullanılır.
       clearInterval(timerId);
       console.log("Unmounting");
     };
-  }, []);
+  }, []);//! Bu boş array (Dependency Array)
 
   console.log("Rendering");
+
+
+
+
+
+
   return (
     <div className="container text-center">
       <h1 className="text-danger">USE EFFECT</h1>
