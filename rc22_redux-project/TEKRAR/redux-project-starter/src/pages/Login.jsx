@@ -15,7 +15,7 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
-  const url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=16ebd5059c464cc2931e5f8b0c80357a";
+
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,6 +48,8 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        {/* //!noValidate submit de bos olsada input true gösteriyor. */}
+        {/* <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}> */}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
