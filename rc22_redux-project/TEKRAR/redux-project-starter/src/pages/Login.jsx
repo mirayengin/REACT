@@ -8,9 +8,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=16ebd5059c464cc2931e5f8b0c80357a";
   
@@ -19,7 +22,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //todo dispatch()
+    dispatch(setUser);
     setEmail("");
     setPassword("");
     navigate("/")

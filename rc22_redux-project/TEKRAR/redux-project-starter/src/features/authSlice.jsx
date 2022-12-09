@@ -27,7 +27,16 @@ const authSlice = createSlice({
 
     // clearUser: (state, action) => {
     clearUser: (state, {type,payload}) => {
-      state.user = initialState
+      // state.user = initialState
+      state.user = null
     },
   }, 
 });
+
+
+//! Yazdığımız reducerları başka componentlerde kullanmak için export ediyoruz.Bunlar type ve actionları otomatik oluşturuyor.
+export const { setUser, clearUser } = authSlice.actions;
+
+
+//? Authslice içindeki otomatik oluşan reducer ı gönderiyoruz.
+export default authSlice.reducer;
