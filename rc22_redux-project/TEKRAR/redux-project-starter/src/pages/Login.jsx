@@ -22,7 +22,9 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setUser);
+    //? User login olduğunda login bilgilerini kullanmak için biz setUser state ini yapmıştık burdada loginden sonra o state i güncelliyoruz ve içine payload u(email,password) gönderiyoruz.
+    dispatch(setUser({ email, password }));
+    
     setEmail("");
     setPassword("");
     navigate("/")

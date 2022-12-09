@@ -14,8 +14,8 @@ const newsSlice = createSlice({
   reducers: {
     clearNewList: (state, {type,payload}) => {
       // state.newsList = initialState,
-      state.newsList = [],
-    },
+      // state.newsList = [],
+    }
   },
 });
 

@@ -1,10 +1,13 @@
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
-    <div>
+    //! redux tookit için burda Provider property si ile sarmallıyoruz ve store u ilgili yerde kullanmak için
+    <Provider store={store}>
       <AppRouter />
-    </div>
+    </Provider>
   );
 }
 
